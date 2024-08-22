@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+.otp_slot {
+    @apply w-[50px] h-[50px] text-2xl
+}
