@@ -1,6 +1,6 @@
 "use client"
 
-import { AuthProviderData, Children, Response, UserTokenPayload } from '@/lib/types'
+import { AuthData, AuthProviderData, Children, Response, UserTokenPayload } from '@/lib/types'
 import { refreshTokenRoute } from '@/services/api'
 import { authService } from '@/services/authService'
 import { httpService } from '@/services/httpService'
@@ -15,7 +15,7 @@ const Context = createContext<AuthProviderData>(undefined)
 
 function AuthContext({children}:Children) {
     const [token,setToken] = useState<string|null>(null)
-    const [auth,setAuth] = useState<AuthProviderData>({
+    const [auth,setAuth] = useState<AuthData>({
         isAuth:false,
         user:null
     }) 
@@ -69,7 +69,7 @@ function AuthContext({children}:Children) {
         }
     },[])
     return (
-        <Context.Provider value={auth}>
+        <Context.Provider value={{auth,setAuth}}>
             {children}
         </Context.Provider>
     )

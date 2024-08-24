@@ -22,9 +22,13 @@ declare type UserTokenPayload = {
     email:string
 }
 
-declare type AuthProviderData = {
+declare type AuthData = {
     user:UserTokenPayload|null,
     isAuth:boolean
+}
+declare type AuthProviderData = {
+    auth:AuthData,
+    setAuth:(state:AuthData) => void
 } | undefined
 
 

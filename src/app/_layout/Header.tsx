@@ -9,7 +9,7 @@ import { AuthProviderData } from '@/lib/types'
 
 function Header() {
     const {mutate,isLoading} = useLogout()
-    const auth:AuthProviderData = useAuth()
+    const authData:AuthProviderData = useAuth()
     return (
         <header className='w-full h-[80px] fixed top-0 left-0 px-5 flex items-center justify-between'>
             <Link href='/'>
@@ -20,11 +20,11 @@ function Header() {
             </Link>
 
             {
-                auth?.isAuth ? (
+                authData?.auth?.isAuth ? (
                     <Button 
                         color='primary' 
                         onClick={() => mutate()} 
-                        isLoading={isLoading}
+                        disabled={isLoading}
                     >
                         Logout
                     </Button>
