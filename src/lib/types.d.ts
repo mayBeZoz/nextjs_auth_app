@@ -15,16 +15,18 @@ declare interface IUser {
     lastName:string
 }
 
-declare type AuthProviderData = {
-    token:string|null,
-    setToken:(state:string|null) => void
-} | undefined
 
 declare type UserTokenPayload = {
     role:UserRoles,
     _id:string,
     email:string
 }
+
+declare type AuthProviderData = {
+    user:UserTokenPayload|null,
+    isAuth:boolean
+} | undefined
+
 
 declare type Response<ResponseData> = {
     error:any,

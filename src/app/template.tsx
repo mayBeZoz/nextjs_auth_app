@@ -4,6 +4,7 @@ import { Children } from "@/lib/types"
 import { QueryClient, QueryClientProvider } from "react-query"
 import { ToastContainer } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
+import Header from "./_layout/Header"
 
 const client = new QueryClient()
 
@@ -12,6 +13,7 @@ function RootTemplate({children}:Children) {
         <>
             <QueryClientProvider client={client}>
                 <AuthContext>
+                    <Header/>
                     {children}              
                 </AuthContext>
             </QueryClientProvider>

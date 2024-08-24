@@ -13,7 +13,7 @@ export default function Home() {
         },
         queryKey:['users']
     })
-console.log(data)
+
     return (
         <div className="w-full h-screen flex justify-center items-center">
             <h1 className="font-bold text-5xl">home page</h1>

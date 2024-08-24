@@ -10,10 +10,12 @@ const httpService = axios.create({
 httpService.interceptors.response.use(
     config => config,
     (error:AxiosError) => {
+
         const status = error.response?.status
         if (status === 500) {
             notify('Internal Server Error , please try again')
         }
+        return Promise.reject(error);
     }
 )
 

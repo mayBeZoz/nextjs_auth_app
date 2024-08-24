@@ -1,11 +1,13 @@
 "use client"
 
-import { AuthProviderData, Children, Response } from '@/lib/types'
+import { AuthProviderData, Children, Response, UserTokenPayload } from '@/lib/types'
 import { refreshTokenRoute } from '@/services/api'
 import { authService } from '@/services/authService'
 import { httpService } from '@/services/httpService'
 import { AxiosError } from 'axios'
+import { getCookie } from 'cookies-next'
 import React, { createContext, useContext, useLayoutEffect, useState } from 'react'
+import { useJwt } from 'react-jwt'
 
 
 
@@ -13,6 +15,21 @@ const Context = createContext<AuthProviderData>(undefined)
 
 function AuthContext({children}:Children) {
     const [token,setToken] = useState<string|null>(null)
+    const [auth,setAuth] = useState<AuthProviderData>({
+        isAuth:false,
+        user:null
+    }) 
+
+    const {isExpired,decodedToken} = useJwt(getCookie('token') || '');
+
+    useLayoutEffect(()=>{
+        if (!isExpired && decodedToken) {
+            setAuth({
+                isAuth:true,
+                user:decodedToken as UserTokenPayload
+            })
+        }
+    },[isExpired,decodedToken])
 
     const refreshToken = async () => {
         try {
@@ -44,6 +61,7 @@ function AuthContext({children}:Children) {
                 if (error.response?.status === 401){
                     refreshToken()
                 }
+                return Promise.reject(error);
             }
         )
         return () => {
@@ -51,10 +69,7 @@ function AuthContext({children}:Children) {
         }
     },[])
     return (
-        <Context.Provider value={{
-            token,
-            setToken
-        }}>
+        <Context.Provider value={auth}>
             {children}
         </Context.Provider>
     )
