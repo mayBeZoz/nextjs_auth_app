@@ -24,6 +24,7 @@ export const useRegister = (userData:TCreateUserPayload) => {
         },
         onSuccess:(res:AxiosResponse<{data:IUser}>) => {
             const userId = res.data.data._id
+            notify('Your account is Created Successfully , Continue to activate it','success')
             router.push(`/auth/account-verification/${userId}`)
         },
         onError: (err:AxiosError<Response<null>>) => {
@@ -43,7 +44,7 @@ export const useRegister = (userData:TCreateUserPayload) => {
                 )
             }else if (status === 409) {
                 setInvalidFields([])
-                notify('User with this email already exists')
+                notify('User with this email already exists','error')
             }
         },
         mutationKey:['login']

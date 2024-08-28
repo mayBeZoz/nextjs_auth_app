@@ -3,3 +3,15 @@ export enum UserRoles {
     USER="user",
     SUPER_ADMIN="super-admin"
 }
+
+export const navLinks = [
+    {
+        name:'home',
+        href:'/'
+    },
+    {
+        name:'profile',
+        href:'/profile'
+    },
+    
+]

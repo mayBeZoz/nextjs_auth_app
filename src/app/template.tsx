@@ -17,7 +17,10 @@ function RootTemplate({children}:Children) {
                     {children}              
                 </AuthContext>
             </QueryClientProvider>
-            <ToastContainer />
+            <ToastContainer 
+                className='h-[80vh]' 
+                newestOnTop={true}
+            />
         </>
     )
 }

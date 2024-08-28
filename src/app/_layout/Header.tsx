@@ -6,6 +6,7 @@ import { useLogout } from '../auth/_hooks/useLogout'
 import Link from 'next/link'
 import { useAuth } from '@/contexts/AuthContext'
 import { AuthProviderData } from '@/lib/types'
+import { navLinks } from '@/lib/constants'
 
 function Header() {
     const {mutate,isLoading} = useLogout()
@@ -19,17 +20,29 @@ function Header() {
                 </h1>
             </Link>
 
-            {
-                authData?.auth?.isAuth ? (
-                    <Button 
-                        color='primary' 
-                        onClick={() => mutate()} 
-                        disabled={isLoading}
-                    >
-                        Logout
-                    </Button>
-                ) : null
-            }
+            <nav className='flex'>
+                <ul className='flex gap-6 items-center mr-10'>
+                    {
+                        navLinks.map((link,idx) => (
+                            <li key={idx}>
+                                <Link className='font-medium capitalize' href={link.href}>{link.name}</Link>
+                            </li>
+                        ))
+                    }
+                </ul>
+                {
+                    authData?.auth?.isAuth ? (
+                        <Button 
+                            color='primary' 
+                            onClick={() => mutate()} 
+                            disabled={isLoading}
+                        >
+                            Logout
+                        </Button>
+                    ) : null
+                }
+            </nav>
+            
         </header>
     )
 }

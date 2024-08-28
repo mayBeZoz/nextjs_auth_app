@@ -2,7 +2,7 @@
 
 import { Button } from "@nextui-org/button"
 import { Input } from "@nextui-org/input"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai"
 import Link from "next/link"
 import { useLogin } from "../_hooks/useLogin"
@@ -45,11 +45,15 @@ function LoginPage() {
                         onChange={(e) => setPassword(e.target.value)}
                         
                     />
+                    <p className=" flex justify-between w-full mb-8 mt-3">
+                        <span>
+                            <span>Don't Have an account? </span> 
+                            <Link href='/auth/register' className="text-primary">Register here</Link>
+                        </span>
+                        <Link href='/auth/forgot-password' className="text-primary block">Forgot Password?</Link>
+                    </p>
                 </div>
-                <p className="sm:w-[500px] w-full mb-8 mt-3">
-                    <span>Don't Have an account? </span> 
-                    <Link href='/auth/register' className="text-primary">Register here</Link>
-                </p>
+
                 <Button 
                     onClick={login} 
                     className="font-medium" 

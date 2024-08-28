@@ -1,5 +1,5 @@
 export const ADMIN_PROTECTED_ROUTES = ['/admin']
-export const USER_PROTECTED_ROUTES = ['/user']
+export const USER_PROTECTED_ROUTES = ['/profile']
 export const AUTH_ROUTE = '/auth'
 
 

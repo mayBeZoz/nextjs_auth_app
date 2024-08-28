@@ -19,10 +19,10 @@ export const useLogout = () => {
                 isAuth:false,
                 user:null
             })
-            notify("Logged out successfully")
+            notify("Logged out successfully","success")
         },
         onError:(err) => {
-            notify("Cannot log out ,Please try again")
+            notify("Cannot log out ,Please try again",'error')
         },
         mutationKey:['logout']
     })

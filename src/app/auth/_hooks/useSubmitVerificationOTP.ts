@@ -20,18 +20,18 @@ export const useSubmitVerificationOTP = (userId:string,otp:string) => {
         onError:(err:AxiosError)=>{
             const status = err.response?.status
             if (status === 400) {
-                notify('Invalid Verification Code, Please try again')
+                notify('Invalid Verification Code, Please try again','error')
             }else if (status === 403) {
-                notify('User is Already Verified')
+                notify('User is Already Verified','error')
                 router.push('/auth/login')
             }else if (status === 404) {
-                notify('User not found, Please try again')
+                notify('User not found, Please try again','error')
                 router.push('/auth/register')
             }
         },
 
         onSuccess:() => {
-            notify('Your Account is verified successfully ')
+            notify('Your Account is verified successfully','success')
             router.push('/auth/login')
         },
 

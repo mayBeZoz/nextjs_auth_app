@@ -8,4 +8,6 @@ export const accountVerificationOTPRoute = `${usersRoute}/get-account-verificati
 export const submitAccountVerificationOTPRoute = `${usersRoute}/submit-account-verification-otp`
 export const refreshTokenRoute = `${usersRoute}/refresh-token`
 export const logoutRoute = `${usersRoute}/logout`
+export const forgotPasswordOTPRoute = `${usersRoute}/get-reset-password-otp`
+export const submitForgotPasswordOTPRoute = `${usersRoute}/submit-reset-password`
 //          ===================          User ROUTES          ===================          

@@ -1,7 +1,7 @@
 'use client'
 
 import { useParams } from "next/navigation"
-import {Spinner} from "@nextui-org/spinner";
+import { Spinner } from "@nextui-org/spinner";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp"
 import { useEffect, useState } from "react"
 import { Button } from "@nextui-org/button"
@@ -24,7 +24,7 @@ function AccountVerification() {
     },[isSendingOtpLoading])
 
     const submitOtp = () => {
-        if (otp.length < 6) {
+        if (otp.length === 6) {
             setIsOtpValid(false)
         }else {
             setIsOtpValid(true)

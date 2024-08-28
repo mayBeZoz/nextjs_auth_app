@@ -16,21 +16,22 @@ export const useGetVerificationOTP = (userId:string) => {
             const res = await authService.get<{},{data:Response<null>}>(`${accountVerificationOTPRoute}/${userId}`)
             setIsLoading(false)
             if (res.data.status === "success") {
-                notify('account verification code is sent to your email')
+                notify('account verification code is sent to your email','success')
             }
             return res
         }catch (err) {
+            setIsLoading(false)
             if (err instanceof AxiosError) {
                 const status = err.response?.status;
                 if (status === 404) {
-                    notify('User is not found, Please try again');
+                    notify('User is not found, Please try again','error');
                     router.push('/auth/register')
                 } else if (status === 403) {
-                    notify('User is already verified');
+                    notify('User is already verified','error');
                     router.push('/auth/login')
                 }
             } else {
-                notify('Error occur, Please try again')
+                notify('Error occur, Please try again','error')
             }
             setIsLoading(false)
         }
